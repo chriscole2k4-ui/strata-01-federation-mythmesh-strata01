@@ -1,0 +1,173 @@
+{
+  "root": "Unauthorized access to patient records",
+  "nodes": [
+    {
+      "id": "A",
+      "title": "Credential compromise",
+      "children": [
+        {
+          "id": "A1",
+          "title": "Password spray -> access",
+          "indicators": [
+            "failed_login_rate_high",
+            "geo_mismatch"
+          ],
+          "mitigation": [
+            "force_mfa",
+            "rate_limit"
+          ]
+        },
+        {
+          "id": "A2",
+          "title": "Phishing -> OTP bypass",
+          "indicators": [
+            "new_device",
+            "suspicious_link_click"
+          ],
+          "mitigation": [
+            "revoke_sessions",
+            "user_educate"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "title": "Token theft",
+      "children": [
+        {
+          "id": "B1",
+          "title": "Session cookie theft -> API calls",
+          "indicators": [
+            "token_fingerprint_mismatch",
+            "device_binding_mismatch"
+          ],
+          "mitigation": [
+            "revoke_token",
+            "rotate_secrets"
+          ]
+        },
+        {
+          "id": "B2",
+          "title": "Compromised 3rd-party integration -> delegated tokens",
+          "indicators": [
+            "sudden_integration_activity",
+            "unknown_client_id"
+          ],
+          "mitigation": [
+            "disable_integration",
+            "rotate_client_secrets"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "title": "Insider misuse",
+      "children": [
+        {
+          "id": "C1",
+          "title": "Excessive exports via UI",
+          "indicators": [
+            "export_count_high",
+            "privileged_account_activity"
+          ],
+          "mitigation": [
+            "soft_block",
+            "human_review"
+          ]
+        },
+        {
+          "id": "C2",
+          "title": "Elevated queries via privileged account",
+          "indicators": [
+            "query_complexity_high",
+            "unexpected_where_clauses"
+          ],
+          "mitigation": [
+            "audit_lock",
+            "restrict_queries"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "title": "API misuse",
+      "children": [
+        {
+          "id": "D1",
+          "title": "Unthrottled bulk read endpoint",
+          "indicators": [
+            "high_row_reads",
+            "no_pagination"
+          ],
+          "mitigation": [
+            "apply_rate_limit",
+            "enforce_pagination"
+          ]
+        },
+        {
+          "id": "D2",
+          "title": "Endpoint returns PHI due to bad filters",
+          "indicators": [
+            "filter_missing",
+            "schema_mismatch"
+          ],
+          "mitigation": [
+            "input_validation",
+            "schema_checks"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "E",
+      "title": "Backup / storage leak",
+      "children": [
+        {
+          "id": "E1",
+          "title": "S3 bucket misconfig -> bulk download",
+          "indicators": [
+            "new_ip_mass_download",
+            "public_acl_changed"
+          ],
+          "mitigation": [
+            "revoke_keys",
+            "fix_acl"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "title": "Injection / replay",
+      "children": [
+        {
+          "id": "F1",
+          "title": "SQL/NoSQL injection",
+          "indicators": [
+            "unexpected_sql_tokens",
+            "query_anomalies"
+          ],
+          "mitigation": [
+            "param_queries",
+            "waf"
+          ]
+        },
+        {
+          "id": "F2",
+          "title": "PKCE replay or OAuth code interception",
+          "indicators": [
+            "pkce_mismatch",
+            "replayed_code"
+          ],
+          "mitigation": [
+            "enforce_s256",
+            "nonce_checks"
+          ]
+        }
+      ]
+    }
+  ]
+}
