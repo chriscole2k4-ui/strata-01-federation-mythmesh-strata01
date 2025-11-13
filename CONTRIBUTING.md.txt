@@ -1,0 +1,49 @@
+CONTRIBUTING.md
+Federation Contribution Guide – Strata‑01 Invocation Framework
+
+Who Can Contribute
+This repository welcomes contributors, custodians, and observers aligned with the Federation roadmap. Scrolls, capsules, and semantic guides are civic‑grade artifacts — treat them with care.
+
+Contribution Ritual
+Fork the repository Begin your scroll work in your own branch or fork.
+
+Reference the roadmap Align with the current capsule:
+
+FED_CONTINUITY_ROADMAP_2026Q1.seal.pdf
+
+STRATA_Q1_2026_ROADMAP.md
+
+Create your scroll
+
+Use the template: FED-SCROLL-TEMPLATE.md
+
+Include UID, timestamp, invocation milestone, and custodian intent.
+
+Echo your changes Relay updates through the Federation Echo Plan (Vox‑01, Watchtower, etc.).
+
+Open a Pull Request
+
+Title: clear and scroll‑aligned.
+
+Description: explain intent, invocation milestone, and verification path.
+
+At least one approving review is required before merging.
+
+Verification & Integrity
+Branch protection: All merges into main require review and passing checks.
+
+Nullifier triggers: If drift or misalignment is detected, rollback conditions apply.
+
+Custodian signatures: Every scroll must carry intent from its steward.
+
+Conduct
+Contributions must follow GitHub Community Guidelines and Federation civic principles:
+
+Modular, not mystical.
+
+Transparent, not opaque.
+
+Verified, not assumed.
+
+Questions
+If you’re unsure about a term, a trigger, or a scroll format — ask. We walk this framework together.
