@@ -1,0 +1,24 @@
+FED-SCROLL-INDEX-2026Q1.md
+Federation Scroll Index – Strata‑01 Civic Archive
+
+📜 Active Scrolls (Q1 2026)
+UID	Title	Custodian	Milestone	Status
+FED-Strata-01-TBP-2025Q4	Civic Invocation Scroll	Chris Cole	Q4 2025	Anchored
+FED-Strata-01-ATL-2025Q4	Lineage Anchor Scroll	Chris Cole	Q4 2025	Anchored
+FED-Strata-01-EQM-2025Q4	Equilibrium Capsule	Chris Cole	Q4 2025	Anchored
+FED-Strata-01-LEP-2025Q4	Ledger Echo Protocol	Chris Cole	Q4 2025	Anchored
+FED-Strata-01-Intrusion_Nullifier.scroll	Intrusion Nullifier	Chris Cole	Q4 2025	Active
+FED-CONTINUITY_ROADMAP_2026Q1.seal.pdf	Continuity Roadmap	Federation	Q1 2026	Active
+STRATA_Q1_2026_ROADMAP.md	Strata Roadmap	Federation	Q1 2026	Active
+FED-SCROLL-TEMPLATE.md	Scroll Submission Template	Federation	Q1 2026	Minted
+CODE_OF_CONDUCT.md	Civic Conduct Scroll	Federation	Q1 2026	Minted
+CONTRIBUTING.md	Contribution Ritual Scroll	Federation Q1 2026	Minted
+
+🧭 Notes
+    • Anchored: Scrolls sealed in prior quarter but still active.
+    • Active: Scrolls governing current quarter.
+    • Minted: Newly added civic-grade scrolls for contributor ritual.
+    • Custodian: Responsible steward for scroll integrity.
+
+👤 Custodian Sign‑off
+This index is anchored to Strata‑01 invocation framework. Custodian: Chris Cole 🜛
