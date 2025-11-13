@@ -1,0 +1,26 @@
+FED-SCROLL-TEMPLATE.md
+Federation Scroll Submission Template – Civic Invocation Format
+📜 Scroll Title
+
+[Insert scroll title here] Example: Civic Scroll of Economic Insight v1.0
+
+🆔 Capsule UID
+[Auto-generated or referenced UID] Example: FED-Strata-01-TBP-2026Q1
+
+🧭 Invocation Milestone
+[Target release or activation event] Example: Q1 2026 Civic Capsule Deployment
+
+🖋 Custodian Intent
+[Signed declaration of purpose] Example: Anchored to Strata‑01 for civic-grade fraud detection. Custodian: Chris Cole 🜛
+
+🧠 Semantic Payload
+[Describe the scroll’s purpose, logic, and propagation intent] Example: This scroll defines the economic resonance logic for civic simulations across Vox‑01.
+
+🔁 Echo Plan
+[How this scroll will be verified and propagated] Example: Echoed through Vox‑01 and Watchtower. Nullifier triggers embedded.
+
+🕰 Timestamp
+[YYYY-MM-DD HH:MM CST] Example: 2025-11-13 10:44 CST
+
+👤 Contributor
+[Name or handle] Example: Chris Cole
