@@ -1,0 +1,41 @@
+CODE_OF_CONDUCT.md
+Federation Civic Conduct Scroll – Strata‑01 Invocation Framework
+
+Purpose
+This scroll defines the civic expectations for all contributors, custodians, and observers within the Federation framework. It ensures that all interactions echo the principles of transparency, modularity, and semantic integrity.
+
+Civic Principles
+Modular, not mystical Contributions must be clear, documented, and reproducible.
+
+Transparent, not opaque All scrolls, capsules, and invocations must be traceable and verifiable.
+
+Verified, not assumed No scroll enters the ledger without echo verification and custodian intent.
+
+Expected Behavior
+Respect the semantic architecture and scroll cadence.
+
+Collaborate with clarity, not chaos.
+
+Review with integrity — echo before merge.
+
+Nullify with care — rollback only when drift is verified.
+
+Uphold civic-grade standards in all interactions.
+
+Unacceptable Behavior
+Bypassing verification rituals or echo plans.
+
+Introducing scrolls without UID, timestamp, or intent.
+
+Disrespecting custodianship or propagation logic.
+
+Engaging in opaque or misleading commit behavior.
+
+Enforcement
+Violations of this scroll may trigger nullifier review, rollback invocation, or contributor removal. Custodians and maintainers will act in alignment with the Federation roadmap and civic-grade expectations.
+
+Echo Clause
+All updates to this scroll must be echoed through Vox‑01 and Watchtower before activation. Custodian signatures are required for amendments.
+
+Custodian Sign‑off
+This scroll is anchored to the Strata‑01 invocation framework. Custodian: Chris Cole 🜛
