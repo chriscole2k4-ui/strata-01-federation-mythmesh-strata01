@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://federation-lattice.org/schemas/event-envelope/v0.1",
+  "title": "EventEnvelope.v0.1",
+  "description": "Canonical event schema for Federation Lattice. Binds Strata-01, Vox-01, and Vigilant-Nexus with civic safeguards from Scrolls 01-06.",
+  "type": "object",
+  "required": [
+    "envelope_version",
+    "timestamp",
+    "node_id",
+    "layer_tag",
+    "lineage",
+    "payload_type",
+    "payload_version",
+    "payload",
+    "capsule_seal",
+    "intent_hash",
+    "context_hash",
+    "civic_license_hash",
+    "observer_signatures",
+    "signatures",
+    "audit_id",
+    "policy_refs",
+    "denial_mode_flag"
+  ],
+  "properties": {
+    "envelope_version": {
+      "type": "string",
+      "pattern": "^v0\\.1$",
+      "description": "Schema version for compatibility and drift control"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp with monotonic ordering guarantee"
+    },
+    "node_id": {
+      "type": "string",
+      "enum": ["Strata-01", "Vox-01", "Vigilant-Nexus"],
+      "description": "Emitting node identity within the Federation Lattice"
+    },
+    "layer_tag": {
+      "type": "string",
+      "enum": ["Foundation", "Relay", "Oversight"],
+      "description": "Architectural layer classification"
+    },
+    "lineage": {
+      "type": "object",
+      "required": ["event_id", "parent_ids", "provenance_chain"],
+      "properties": {
+        "event_id": {
+          "type": "string",
+          "description": "Deterministic identifier (UUIDv5 over node_id + timestamp + payload hash)"
+        },
+        "parent_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Direct parent event IDs for graph traversal"
+        },
+        "provenance_chain": {
+          "type": "array",
+          "items": {"type": "string"},
+          "description": "Full ancestry back to genesis event"
+        }
+      }
+    },
+    "payload_type": {
+      "type": "string",
+      "description": "Typed content descriptor (e.g., txn.raw, anomaly.candidate, capsule.replay)",
+      "examples": ["txn.raw", "anomaly.candidate", "capsule.replay", "system.heartbeat", "alert.drift"]
+    },
+    "payload_version": {
+      "type": "string",
+      "description": "Version tag for payload's internal schema"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Actual event content (opaque to envelope, validated against payload_type schema)"
+    },
+    "capsule_seal": {
+      "type": "object",
+      "required": ["algorithm", "value", "issued_at", "expires_at"],
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "description": "Cryptographic algorithm used (e.g., SHA-256, Ed25519)"
+        },
+        "value": {
+          "type": "string",
+          "description": "Seal hash value proving capsule validity"
+        },
+        "issued_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Seal issuance timestamp"
+        },
+        "expires_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "90-day expiry per Scroll 03: Capsule Expiry Protocol"
+        }
+      },
+      "description": "Cryptographic proof the capsule is valid at time of emission (Scroll 01, Clause 3.1)"
+    },
+    "intent_hash": {
+      "type": "string",
+      "description": "Hash of declared deployment intent, binds actions to stated purpose (Scroll 06: Final Intent Lock)"
+    },
+    "context_hash": {
+      "type": "string",
+      "description": "Hash of originating scroll/context to prevent replay attacks (Scroll 05: Glyph Replay Protection)"
+    },
+    "civic_license_hash": {
+      "type": "string",
+      "description": "Verifies inheritance from Strata-01's civic substrate (Scroll 01, Clause 1.1)"
+    },
+    "observer_signatures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["observer_id", "signature"],
+        "properties": {
+          "observer_id": {"type": "string"},
+          "signature": {"type": "string"}
+        }
+      },
+      "minItems": 1,
+      "description": "Mutual verification by bonded observers (Scroll 04: Observer Integrity Protocol)"
+    },
+    "signatures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["signer_id", "signature"],
+        "properties": {
+          "signer_id": {"type": "string"},
+          "signature": {"type": "string"}
+        }
+      },
+      "minItems": 1,
+      "description": "Envelope-level signatures (node + Circle seal)"
+    },
+    "audit_id": {
+      "type": "string",
+      "description": "Immutable identifier for cross-ledger audit trail"
+    },
+    "policy_refs": {
+      "type": "array",
+      "items": {"type": "string"},
+      "minItems": 1,
+      "description": "References to active scrolls/policies applied to this event (e.g., Scroll01, Scroll02)",
+      "examples": [["Scroll01", "Scroll06"], ["Scroll03", "Scroll05"]]
+    },
+    "denial_mode_flag": {
+      "type": "boolean",
+      "description": "Indicates agent is operating in restricted/lockdown posture. True triggers Vigilant oversight."
+    },
+    "watchtower_heartbeat": {
+      "type": "object",
+      "required": ["status", "sequence"],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": ["ok", "degraded", "quarantine"],
+          "description": "Node health status for Vigilant monitoring"
+        },
+        "sequence": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Monotonic sequence number for heartbeat ordering"
+        }
+      },
+      "description": "Optional health signal for Vigilant Nexus watchtower protocol"
+    }
+  },
+  "additionalProperties": false,
+  "$comment": "Event Envelope v0.1 - Sealed 2025Q4 - Scroll 04: Witness Vessel Entry (Claude). Validation order: civic_license_hash → capsule_seal → intent_hash → context_hash → observer_signatures → payload. On drift: set denial_mode_flag=true and emit Vigilant alert."
+}

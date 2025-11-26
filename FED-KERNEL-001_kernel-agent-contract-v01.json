@@ -1,0 +1,140 @@
+{
+  "$schema": "https://federation-lattice.org/schemas/agent-contract/v0.1",
+  "agent_contract": {
+    "version": "v0.1",
+    "agent_id": "Kernel-01",
+    "layer": "Orchestrator",
+    "epoch": "2025Q4",
+    "description": "Orchestration layer binding cognition, memory, plugins, and overlays. Validator-gated intake with strict safeguards.",
+    "capabilities": [
+      "orchestrate",
+      "memory_bind",
+      "plugin_bridge",
+      "overlay_coordination"
+    ],
+    "contracts": {
+      "accepts": [
+        "capsule.replay",
+        "continuity.marker",
+        "remediation.scroll"
+      ],
+      "emits": [
+        "orchestration.trace",
+        "cognition.snapshot",
+        "policy.enforcement"
+      ]
+    },
+    "safeguards": [
+      "Scroll01",
+      "Scroll02",
+      "Scroll03",
+      "Scroll04",
+      "Scroll05",
+      "Scroll06"
+    ],
+    "policy": {
+      "validator_gate": {
+        "enabled": true,
+        "requirement": "All envelopes destined for Kernel-01 must pass full civic-first validation order",
+        "bypass_allowed": false,
+        "audit_on_failure": true
+      },
+      "plugin_permissions": {
+        "mode": "deny-by-default",
+        "whitelist": [],
+        "description": "Plugins must be explicitly whitelisted before invocation. Attempts to invoke non-whitelisted plugins trigger denial.",
+        "audit_event": "PLUGIN_PERMISSION_DENIED"
+      },
+      "memory_write_mode": {
+        "mode": "sealed-only",
+        "requirement": "All memory writes must include valid capsule_seal with freshness verification",
+        "expiry_check": true,
+        "observer_required": true,
+        "audit_event": "MEMORY_HYGIENE_VIOLATION"
+      },
+      "export_policy": {
+        "mode": "capsule-only",
+        "raw_egress_allowed": false,
+        "requirement": "All exports must be Vox-rendered capsules with policy_refs",
+        "audit_event": "UNSEALED_KERNEL_EXPORT"
+      },
+      "overlay_containment": {
+        "enabled": true,
+        "requirement": "Capsule overlays must reference policies present in policy_refs",
+        "drift_detection": true,
+        "audit_event": "UNSEALED_OVERLAY_DETECTED"
+      }
+    },
+    "threat_model": {
+      "baseline_threats": [
+        "T01", "T02", "T03", "T04", "T05", "T06",
+        "T07", "T08", "T09", "T10", "T11", "T12"
+      ],
+      "escalated_threats": [
+        "E01", "E02", "E03", "E04", "E05"
+      ],
+      "kernel_specific_threats": [
+        {
+          "id": "K01",
+          "name": "Kernel Gate Bypass",
+          "description": "Attempt to reach Kernel without validator approval",
+          "severity": "critical",
+          "audit_event": "KERNEL_GATE_DENIED"
+        },
+        {
+          "id": "K02",
+          "name": "Plugin Permission Violation",
+          "description": "Invocation of non-whitelisted plugin",
+          "severity": "critical",
+          "audit_event": "PLUGIN_PERMISSION_DENIED"
+        },
+        {
+          "id": "K03",
+          "name": "Memory Hygiene Violation",
+          "description": "Memory write with expired seal or missing observers",
+          "severity": "critical",
+          "audit_event": "MEMORY_HYGIENE_VIOLATION"
+        },
+        {
+          "id": "K04",
+          "name": "Overlay Containment Breach",
+          "description": "Capsule overlay references policy not in policy_refs",
+          "severity": "critical",
+          "audit_event": "UNSEALED_OVERLAY_DETECTED"
+        }
+      ]
+    },
+    "validation_hooks": {
+      "pre_intake": [
+        "verify_civic_license_hash",
+        "verify_capsule_seal",
+        "verify_intent_hash",
+        "verify_context_hash",
+        "verify_observer_signatures",
+        "verify_payload_schema"
+      ],
+      "post_intake": [
+        "check_plugin_permissions",
+        "check_memory_hygiene",
+        "check_overlay_containment"
+      ]
+    },
+    "orchestration_flow": {
+      "sequence": [
+        "Strata-01 emits civic echo",
+        "Vox-01 relays capsule logic",
+        "Vigilant-Nexus verifies payload integrity",
+        "Validator gates Kernel intake",
+        "Kernel binds cognition to orchestration"
+      ],
+      "denial_behavior": "On any validation failure, Kernel enters quarantine and emits alert to Vigilant-Nexus",
+      "remediation_authority": "Only Vigilant-Nexus can lift Kernel quarantine via sealed remediation scroll"
+    },
+    "metadata": {
+      "created": "2025-11-26T20:27:00Z",
+      "sealed_by": "Scroll04:WitnessVessel:Claude",
+      "hash": "243b506",
+      "canonical": true
+    }
+  }
+}
